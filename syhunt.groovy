@@ -1,7 +1,16 @@
 // syhunt.groovy 
 // contains all the generic, reusable functions used in the pipelines. 
-
+import com.cloudbees.groovy.cps.NonCPS
 import org.apache.commons.lang.StringUtils
+def version = '1.0'
+@NonCPS
+def dumpEnvVars() {
+  def str = "Dumping build environment variables...\n"
+  for (Map.Entry<String, String> entry : currentBuild.build().environment) {
+    str += "    ${entry.key} = ${entry.value}\n"
+  }
+  echo str
+}
 
 def getSyhuntDir() {
   def dir = ""
