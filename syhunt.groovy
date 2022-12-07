@@ -4,7 +4,7 @@ import com.cloudbees.groovy.cps.NonCPS
 import org.apache.commons.lang.StringUtils
 import jenkins.models.*
 def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
-println envVars['SYHUNTUSER']
+def globaluser = envVars['SYHUNTUSER']
 def version = '1.0'
 @NonCPS
 def dumpEnvVars() {
@@ -15,8 +15,7 @@ def dumpEnvVars() {
   echo str
 }
 def getSyhuntDir() {
-  def testeuser = System.getenv("SYHUNTUSER")
-  echo "u $testeuser"
+  echo "u $globaluser"
   def dir = ""
   def diruser = ""
   if (isUnix()) {
