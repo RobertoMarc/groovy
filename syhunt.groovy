@@ -17,13 +17,11 @@ def dumpEnvVars() {
 echo "u $globaluser"
 def getSyhuntDir() {
   def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
-  println envVars['SYHUNTUSER'] 
+  def diruser = envVars['SYHUNTUSER'] 
   def dir = ""
-  def diruser = ""
   if (isUnix()) {
-    diruser = System.getenv("USER")
     echo "usuario $diruser"
-    dir = "/home/${USER}/syhunt-hybrid/carbon"
+    dir = "/home/${diruser}/syhunt-hybrid/carbon"
   } else {    
     dir = System.getenv("ProgramFiles")
     dir = "${dir}\\Syhunt Hybrid\\"
