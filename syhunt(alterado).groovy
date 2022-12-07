@@ -1,6 +1,6 @@
 // syhunt.groovy 
 // contains all the generic, reusable functions used in the pipelines. 
-#!/usr/bin/env groovy
+
 import org.apache.commons.lang.StringUtils
 
 def getSyhuntDir() {
