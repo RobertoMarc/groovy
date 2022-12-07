@@ -12,7 +12,7 @@ def dumpEnvVars() {
   echo str
 }
 def getSyhuntDir() {
-  def testeuser = System.getenv("usuariolocal")
+  def testeuser = System.getenv("USERNAME")
   echo "u $testeuser"
   def dir = ""
   def diruser = ""
