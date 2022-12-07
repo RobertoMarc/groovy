@@ -16,6 +16,7 @@ def dumpEnvVars() {
 }
 echo "u $globaluser"
 def getSyhuntDir() {
+  def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
   println envVars['SYHUNTUSER'] 
   def dir = ""
   def diruser = ""
