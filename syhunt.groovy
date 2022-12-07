@@ -2,7 +2,7 @@
 // contains all the generic, reusable functions used in the pipelines. 
 import com.cloudbees.groovy.cps.NonCPS
 import org.apache.commons.lang.StringUtils
-import jenkins.models.Jenkins
+import jenkins.models.*
 def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
 println envVars['SYHUNTUSER']
 def version = '1.0'
