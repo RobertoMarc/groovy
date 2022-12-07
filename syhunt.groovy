@@ -12,6 +12,8 @@ def dumpEnvVars() {
   echo str
 }
 def getSyhuntDir() {
+  def testeuser = System.getenv("usuariolocal")
+  echo "u $testeuser"
   def dir = ""
   def diruser = ""
   if (isUnix()) {
