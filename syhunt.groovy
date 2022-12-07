@@ -11,7 +11,7 @@ def dumpEnvVars() {
   }
   echo str
 }
-
+echo "TESTE $teste"
 def getSyhuntDir() {
   def dir = ""
   def diruser = ""
