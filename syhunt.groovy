@@ -118,7 +118,7 @@ def scanURL(Map m) {
   if (m.genRep == false) { genRep = m.genRep }
       echo "Preparing to scan URL: $target"
   if (isUnix()) {
-      sh "su -c ubuntu '$cmd $target -hm:$huntMethod -nv -gr -rout:$output'"
+      sh "su -c ubuntu '$cmd' $target -hm:$huntMethod -nv -gr -rout:$output"
   } else {      
       def cmdline = "$cmd $target -hm:$huntMethod -nv -gr -rout:$output"
       print cmdline.execute().text
