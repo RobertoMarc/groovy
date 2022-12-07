@@ -16,7 +16,7 @@ def dumpEnvVars() {
 }
 echo "u $globaluser"
 def getSyhuntDir() {
-  echo "testeuser $globaluser"
+  echo "testeuser ${globaluser}"
   def dir = ""
   def diruser = ""
   if (isUnix()) {
