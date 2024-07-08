@@ -36,7 +36,7 @@ def getOutFilename() {
   echo workspaceDir
   def outfn = ""
   if (isUnix()) {  
-    outfn = ""${workspaceDir}"+"/${fn}""  
+    outfn = ""${workspaceDir}//${fn}""  
   } else {        
     def userDir = System.getenv("USERPROFILE")
     outfn = ""${workspaceDir}\\${fn}""
