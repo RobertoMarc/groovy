@@ -52,7 +52,7 @@ def checkResults(Map o, String pfcond) {
   String msg_failmedium = 'Build problem: found Medium risk vulnerabilities.'
   String msg_faillow = 'Build problem: found Low risk vulnerabilities.'
   def fail = false
-  def repexists = fileExists "o.outFilename"
+  def repexists = fileExists "$o.outFilename"
   echo "$repexists"  
   if (repexists) {
     def fileContents = readFile "$o.outFilename"
