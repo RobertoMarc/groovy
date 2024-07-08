@@ -50,7 +50,7 @@ def getOutFilename() {
     def userDir = System.getenv("USERPROFILE")
     outfn = "${userDir}\\.jenkins\\workspace\\workspace@script\\syhunt\\reports\\${fn}"
   }  
-  return outfn
+  return [outFilename: outfn, outReportFilename: fn]
 }
 
 def doFail(String reason) {
@@ -58,13 +58,13 @@ def doFail(String reason) {
   currentBuild.result='FAILURE'
 }
 
-def checkResults(String filename, String pfcond) {
+def checkResults(Map o, String pfcond) {
   echo 'Checking scan results...'
   String msg_failhigh = 'Build problem: found High risk vulnerabilities.'
   String msg_failmedium = 'Build problem: found Medium risk vulnerabilities.'
   String msg_faillow = 'Build problem: found Low risk vulnerabilities.'
   def fail = false
-  def repexists = fileExists "$filename"
+  def repexists = fileExists "$o.outFilename"
   echo "$repexists"  
   if (repexists) {
     def fileContents = readFile "$filename"
@@ -102,7 +102,7 @@ def checkResults(String filename, String pfcond) {
   } else {
     doFail('Build problem: No results generated.')
   }
-  return [outFilename: filename]
+  return [outFilename: o.outFileName, OutReportFilename: o.outReportFilename]
 }
 
 def scanURL(Map m) {
