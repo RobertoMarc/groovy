@@ -41,6 +41,7 @@ def getOutFilename() {
     def userDir = System.getenv("USERPROFILE")
     outfn = "${workspaceDir}"+"\\${fn}"
   }  
+  echo "outfn $outfn"
   return [outFilename: outfn, outReportFilename: fn]
 }
 
