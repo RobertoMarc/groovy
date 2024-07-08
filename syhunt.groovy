@@ -41,14 +41,17 @@ def getSyhuntCmd(String modulename) {
 }
 
 def getOutFilename() {
-  def unixTime = System.currentTimeMillis() / 1000L;
+ def unixTime = System.currentTimeMillis() / 1000L;
   def fn = "${unixTime}-${BUILD_NUMBER}.html"
+  def workspaceDir = env.WORKSPACE
+  echo "workspace"
+  echo workspaceDir
   def outfn = ""
   if (isUnix()) {  
-    outfn = "/var/lib/jenkins/workspace/workspace@script/syhunt/reports/${fn}"  
+    outfn = "${workspaceDir}"+"/${fn}"  
   } else {        
     def userDir = System.getenv("USERPROFILE")
-    outfn = "${userDir}\\.jenkins\\workspace\\workspace@script\\syhunt\\reports\\${fn}"
+    outfn = "${workspaceDir}"+"\\${fn}"
   }  
   return [outFilename: outfn, outReportFilename: fn]
 }
@@ -64,10 +67,11 @@ def checkResults(Map o, String pfcond) {
   String msg_failmedium = 'Build problem: found Medium risk vulnerabilities.'
   String msg_faillow = 'Build problem: found Low risk vulnerabilities.'
   def fail = false
-  def repexists = fileExists "$o.outFilename"
+  echo o.outFilename
+  def repexists = fileExists o.outFilename
   echo "$repexists"  
   if (repexists) {
-    def fileContents = readFile "$filename"
+    def fileContents = readFile o.outFilename
     int hcount = StringUtils.countMatches(fileContents, '<br>High: 0');
     echo "hcount $hcount"
     int mcount = StringUtils.countMatches(fileContents, '<br>Medium: 0');
@@ -102,7 +106,7 @@ def checkResults(Map o, String pfcond) {
   } else {
     doFail('Build problem: No results generated.')
   }
-  return [outFilename: o.outFileName, OutReportFilename: o.outReportFilename]
+  return [outFilename: o.outFileName, outReportFilename: o.outReportFilename]
 }
 
 def scanURL(Map m) {
@@ -120,7 +124,7 @@ def scanURL(Map m) {
   if (isUnix()) {
       sh "$cmd $target -hm:$huntMethod -nv -gr -rout:$output"
   } else {      
-      def cmdline = "$cmd $target -hm:$huntMethod -nv -gr -rout:$output"
+      def cmdline = "$cmd $target -hm:$huntMethod -nv -gr -rout:$output.outFilename"
       print cmdline.execute().text
    }
   return checkResults(output, pfcond)
@@ -143,7 +147,7 @@ def scanCode(Map m) {
   if (isUnix()) {
        sh "$cmd $target -hm:$huntMethod -nv -gr -rout:$output"
   } else {      
-       def cmdline = "$cmd \"$target\" -hm:$huntMethod -rb:$branch -nv -gr -rout:$output"
+       def cmdline = "$cmd \"$target\" -hm:$huntMethod -rb:$branch -nv -gr -rout:$output.outFilename"
       print cmdline.execute().text
    }
   
