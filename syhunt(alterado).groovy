@@ -46,16 +46,16 @@ def doFail(String reason) {
   currentBuild.result='FAILURE'
 }
 
-def checkResults(String filename, String pfcond) {
+def checkResults(Map o, String pfcond) {
   echo 'Checking scan results...'
   String msg_failhigh = 'Build problem: found High risk vulnerabilities.'
   String msg_failmedium = 'Build problem: found Medium risk vulnerabilities.'
   String msg_faillow = 'Build problem: found Low risk vulnerabilities.'
   def fail = false
-  def repexists = fileExists "$filename"
+  def repexists = fileExists "o.outFilename"
   echo "$repexists"  
   if (repexists) {
-    def fileContents = readFile "$filename"
+    def fileContents = readFile "$o.outFilename"
     int hcount = StringUtils.countMatches(fileContents, '<br>High: 0');
     echo "hcount $hcount"
     int mcount = StringUtils.countMatches(fileContents, '<br>Medium: 0');
