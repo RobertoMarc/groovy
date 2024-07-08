@@ -113,7 +113,7 @@ def scanURL(Map m) {
   if (isUnix()) {
       sh "$cmd $target -hm:$huntMethod -nv -gr -rout:$output"
   } else {      
-      def cmdline = "$cmd $target -hm:$huntMethod -nv -gr -rout:output.outFilename"
+      def cmdline = "$cmd $target -hm:$huntMethod -nv -gr -rout:${"output.outFilename"}"
       print cmdline.execute().text
    }
   return checkResults(output, pfcond)
