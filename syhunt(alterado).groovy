@@ -62,16 +62,16 @@ def checkResults(Map o, String pfcond) {
   if (repexists) {
     def fileContents = readFile o.outFilename
     int hcount = StringUtils.countMatches(fileContents, '<br>High: 0');
-    echo "hcount $hcount"
+   // echo "hcount $hcount"
     int mcount = StringUtils.countMatches(fileContents, '<br>Medium: 0');
-    echo "mcount $mcount"
+   // echo "mcount $mcount"
     int lcount = StringUtils.countMatches(fileContents, '<br>Low: 0');
-    echo "lcount $lcount"
+   // echo "lcount $lcount"
     int ucount = StringUtils.countMatches(fileContents, '<font color="red"><b>Canceled');
-    echo "ucount $ucount"
+   // echo "ucount $ucount"
     int icount = StringUtils.countMatches(fileContents, '<b>Invalid license</b>');
-    echo "icount $icount"
-    echo "pfcond $pfcond"
+   // echo "icount $icount"
+   // echo "pfcond $pfcond"
     if (ucount == 1) { 
       doFail('Build problem: Scan aborted.') 
     }
