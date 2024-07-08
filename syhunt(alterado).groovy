@@ -38,7 +38,7 @@ def getOutFilename() {
     def userDir = System.getenv("USERPROFILE")
     outfn = "${userDir}\\.jenkins\\workspace\\workspace@script\\syhunt\\reports\\${fn}"
   }  
-  return outfn
+  return [outFilename: outfn, outReportFilename: fn]
 }
 
 def doFail(String reason) {
