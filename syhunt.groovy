@@ -3,10 +3,11 @@
 import com.cloudbees.groovy.cps.NonCPS
 import org.apache.commons.lang.StringUtils
 import jenkins.models.*
+@NonCPS
 def envVars = Jenkins.instance.getGlobalNodeProperties()[0].getEnvVars() 
 def globaluser = envVars['SYHUNTUSER']
 def version = '1.0'
-@NonCPS
+
 def dumpEnvVars() {
   def str = "Dumping build environment variables...\n"
   for (Map.Entry<String, String> entry : currentBuild.build().environment) {
