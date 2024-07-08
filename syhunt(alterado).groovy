@@ -90,7 +90,7 @@ def checkResults(String filename, String pfcond) {
   } else {
     doFail('Build problem: No results generated.')
   }
-  return [outFilename: filename]
+  return [outFilename: o.outFileName, outReportFilename: o.outReportFilename]
 }
 
 def scanURL(Map m) {
