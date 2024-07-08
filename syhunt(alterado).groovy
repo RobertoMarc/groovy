@@ -31,6 +31,9 @@ def getSyhuntCmd(String modulename) {
 def getOutFilename() {
   def unixTime = System.currentTimeMillis() / 1000L;
   def fn = "${unixTime}-${BUILD_NUMBER}.html"
+  def workspaceDir = env.WORKSPACE
+  echo "workspace"
+  echo workspaceDir
   def outfn = ""
   if (isUnix()) {  
     outfn = "/var/lib/jenkins/workspace/workspace@script/syhunt/reports/${fn}"  
