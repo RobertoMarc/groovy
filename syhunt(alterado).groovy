@@ -36,10 +36,10 @@ def getOutFilename() {
   echo workspaceDir
   def outfn = ""
   if (isUnix()) {  
-    outfn = "/var/lib/jenkins/workspace/workspace@script/syhunt/reports/${fn}"  
+    outfn = "$workspaceDir"+"\${fn}"  
   } else {        
     def userDir = System.getenv("USERPROFILE")
-    outfn = "${userDir}\\.jenkins\\workspace\\workspace@script\\syhunt\\reports\\${fn}"
+    outfn = "$worksapceDir"+"\\${fn}"
   }  
   return [outFilename: outfn, outReportFilename: fn]
 }
