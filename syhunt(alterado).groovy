@@ -39,7 +39,7 @@ def getOutFilename() {
     outfn = ""${workspaceDir}/${fn}""  
   } else {        
     def userDir = System.getenv("USERPROFILE")
-    outfn = ""${workspaceDir}"+"\${fn}""
+    outfn = "${workspaceDir}+\${fn}"
   }  
   return [outFilename: outfn, outReportFilename: fn]
 }
