@@ -7,6 +7,7 @@ def getSyhuntDir() {
   def dir = ""
   def diruser = ""
   if (isUnix()) {
+    sh 'printenv'
     def username = env.LOGNAME
     echo "Nome de usuário: ${username}"
     diruser = "$USER"
