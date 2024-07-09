@@ -7,7 +7,7 @@ def getSyhuntDir() {
   def dir = ""
   def diruser = ""
   if (isUnix()) {
-    def username = sh(script: 'whoami', returnStdout: true).trim()
+    def username = env.USER
     echo "Nome de usuário: ${username}"
     diruser = "$USER"
     echo "usuario $diruser"
