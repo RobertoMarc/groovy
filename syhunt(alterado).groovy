@@ -2,17 +2,14 @@
 // contains all the generic, reusable functions used in the pipelines. 
 
 import org.apache.commons.lang.StringUtils
-
+//nome do usuario linux onde esta instalado o syhunthybrid
+def username = 'ubuntu'
 def getSyhuntDir() {
   def dir = ""
   def diruser = ""
   if (isUnix()) {
-    sh 'printenv'
-    def username = env.LOGNAME
     echo "Nome de usuário: ${username}"
-    diruser = "$USER"
-    echo "usuario $diruser"
-    dir = "/home/${USER}/syhunt-hybrid/carbon"
+    dir = "/home/${username}/syhunt-hybrid/carbon"
   } else {    
     dir = System.getenv("ProgramFiles")
     dir = "${dir}\\Syhunt Hybrid\\"
