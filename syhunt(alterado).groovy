@@ -7,7 +7,7 @@ def getSyhuntDir() {
   def dir = ""
   def diruser = ""
   if (isUnix()) {
-    def username = env.USERNAME
+    def username = System.getenv("USER") 
     echo "Nome de usuário: ${username}"
     dir = "/home/${username}/syhunt-hybrid/carbon"
   } else {    
